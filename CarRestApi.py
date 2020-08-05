@@ -43,12 +43,9 @@ class Test(Resource):
         return {'SimilarName' : [{n.name : n.price} for n in Car.query.filter_by(name=name).all()]}
 
 class GetPriceWise(Resource):
-    def get(self , price):
+    def get(self , price):      
         items = []
         for n in Car.query.all():
             if n.price <= int(price) :
                 items.append({n.name : n.price})
-
-
-
-        return {'Price Below' : items}
+        return {f'Price Below {price}' : items}
